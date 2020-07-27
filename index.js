@@ -11,12 +11,12 @@ let polls = [
     {
         id: 1,
         question: "Your favourite programmin language?",
-        options: {1: "Java", 2: "Javascript", 3: "C++", 4: "C", 5: "Python"}
+        options: {1: {option: "Java", votes: 1}, 2: {option: "Javascript", votes: 3}, 3: {option: "C++", votes: 1}, 4: {option: "C", votes: 0}, 5: {option: "Python", votes: 0}}
     },
     {
         id: 2,
         question: "How are you today?",
-        options: {1: "Fine", 2: "Not so good", 3: "OK", 4: "C", 5: "Great!"}
+        options: {1: {option: "Fine", votes: 0}, 2: {option: "Not so good", votes: 0}, 3: {option: "OK", votes: 0}, 5: {option: "Great!", votes: 0}}
     }
 ]
 
@@ -77,6 +77,18 @@ app.post('/api/polls', (request, response) => {
     polls = polls.concat(poll)
 
     response.json(poll)
+})
+
+app.put('/api/polls/:id', (request, response) => {
+    const body = request.body
+    const id = Number(request.params.id)
+    const newPoll = {
+        question: body.question,
+        options: body.options,
+        id: id,
+    }
+    polls.map((poll, i) => poll.id === id ? polls[i] = newPoll : void 0)
+    response.json(newPoll)
 })
 
 const PORT = process.env.PORT || 3001

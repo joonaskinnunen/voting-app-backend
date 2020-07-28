@@ -3,5 +3,5 @@ Content-Type: application/json
 
 {
     "question": "test?",
-    "options": {"1": "first option", "2": "second option"}
+    "options": {"1": {"option": "first option", "votes": 1}, "2": {"option": "second option", "votes": 3}}
 }

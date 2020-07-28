@@ -3,5 +3,6 @@ Content-Type: application/json
 
 {
     "question": "test?",
-    "options": {"1": {"option": "first option", "votes": 1}, "2": {"option": "second option", "votes": 3}}
+    "options": {"1": {"option": "first option", "votes": 1}, "2": {"option": "second option", "votes": 3}},
+    "userId": "453453dfef4545"
 }

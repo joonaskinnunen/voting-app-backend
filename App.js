@@ -32,8 +32,9 @@ app.use('/api/users', usersRouter)
 app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
 
-app.get('*', (req, res) => {
-  res.sendFile(path.resolve(__dirname + 'build/index.html'))
+app.get('*', function (req, res) {
+  const index = path.join(__dirname, 'build', 'index.html')
+  res.sendFile(index)
 })
 
 app.use(middleware.unknownEndpoint)

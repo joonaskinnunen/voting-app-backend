@@ -1,5 +1,4 @@
 const logger = require('./logger')
-const path = require('path')
 
 const requestLogger = (request, response, next) => {
   logger.info('Method:', request.method)
@@ -10,8 +9,7 @@ const requestLogger = (request, response, next) => {
 }
 
 const unknownEndpoint = (request, response) => {
-//  response.status(404).send({ error: 'unknown endpoint' })
-  response.sendFile(path.resolve(__dirname, '../build/index.html'))
+  response.status(404).send({ error: 'unknown endpoint' })
 }
 
 const errorHandler = (error, request, response, next) => {

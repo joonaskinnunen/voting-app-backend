@@ -1,4 +1,3 @@
-const config = require('./utils/config')
 const express = require('express')
 require('express-async-errors')
 const app = express()
@@ -9,6 +8,7 @@ const loginRouter = require('./controllers/login')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
+const path = require('path')
 
 logger.info('connecting to', process.env.MONGODB_URI)
 
@@ -31,5 +31,13 @@ app.use('/api/login', loginRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 module.exports = app

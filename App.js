@@ -11,14 +11,6 @@ const mongoose = require('mongoose')
 const path = require('path')
 require('dotenv').config()
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
 logger.info('connecting to', process.env.MONGODB_URI)
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })

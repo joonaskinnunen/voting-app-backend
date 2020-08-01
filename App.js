@@ -23,6 +23,9 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 
 app.use(cors())
 app.use(express.static('build'))
+app.use(express.json())
+app.use(middleware.requestLogger)
+
 app.get('/*', function(req, res) {
   console.log(path.resolve(__dirname, 'build/index.html'))
   res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
@@ -31,8 +34,6 @@ app.get('/*', function(req, res) {
     }
   })
 })
-app.use(express.json())
-app.use(middleware.requestLogger)
 
 console.log(path.resolve(__dirname + 'build/index.html'))
 

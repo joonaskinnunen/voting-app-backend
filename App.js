@@ -29,9 +29,6 @@ app.use('/api/users', usersRouter)
 app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
 
-app.use(middleware.unknownEndpoint)
-app.use(middleware.errorHandler)
-
 app.get('/*', function(req, res) {
   res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
     if (err) {
@@ -39,5 +36,10 @@ app.get('/*', function(req, res) {
     }
   })
 })
+
+
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
+
 
 module.exports = app

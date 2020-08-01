@@ -6,6 +6,7 @@ const notesRouter = require('./controllers/polls')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
 const middleware = require('./utils/middleware')
+const history = require('connect-history-api-fallback')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 const path = require('path')
@@ -21,6 +22,9 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     logger.error('error connection to MongoDB:', error.message)
   })
 
+app.use(history({
+  index: 'build//default.html'
+}))
 app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())
@@ -32,8 +36,8 @@ app.use('/api/users', usersRouter)
 app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
 
-/* app.use(middleware.unknownEndpoint)
-app.use(middleware.errorHandler) */
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
 
 
 module.exports = app

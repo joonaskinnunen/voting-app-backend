@@ -26,6 +26,10 @@ app.use(express.static('build'))
 app.use(express.json())
 app.use(middleware.requestLogger)
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname + '/client/build/index.html'))
+})
+
 app.use('/api/users', usersRouter)
 app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)

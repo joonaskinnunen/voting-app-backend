@@ -13,6 +13,12 @@ const pollSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
+  },
+  allowCustomOption: {
+    type: Boolean,
+  },
+  privatePoll: {
+    type: Boolean,
   }
 })
 

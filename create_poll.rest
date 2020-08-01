@@ -1,8 +1,8 @@
 POST http://localhost:3001/api/polls
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Impvb25hc2tpbm4iLCJpZCI6IjVmMjA2NDkyMzhmZTA4NDc3OGQ3OTlhNiIsImlhdCI6MTU5NTk1ODQzM30.3K5YUHKFEwfaLLUEircZxvhNrk-uvbRf6DSTbwME8QU
 
 {
-    "question": "test?",
-    "options": {"1": {"option": "first option", "votes": 1}, "2": {"option": "second option", "votes": 3}},
-    "userId": "453453dfef4545"
+    "question": "testiii",
+    "options": {"0": {"option": "first option", "votes": 1}, "1": {"option": "second option", "votes": 3}}
 }

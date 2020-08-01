@@ -1,6 +1,8 @@
 const express = require('express')
+const history = require('connect-history-api-fallback')
 require('express-async-errors')
 const app = express()
+app.use(history())
 const cors = require('cors')
 const notesRouter = require('./controllers/polls')
 const usersRouter = require('./controllers/users')

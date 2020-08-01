@@ -26,15 +26,6 @@ app.use(express.static('build'))
 app.use(express.json())
 app.use(middleware.requestLogger)
 
-app.get('/*', function(req, res) {
-  console.log(path.resolve(__dirname, 'build/index.html'))
-  res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
 console.log(path.resolve(__dirname + 'build/index.html'))
 
 app.use('/api/users', usersRouter)

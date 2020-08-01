@@ -9,6 +9,7 @@ const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 const path = require('path')
+require('dotenv').config()
 
 logger.info('connecting to', process.env.MONGODB_URI)
 
@@ -25,10 +26,6 @@ app.use(express.static('build'))
 app.use(express.json())
 app.use(middleware.requestLogger)
 
-app.use('/api/users', usersRouter)
-app.use('/api/polls', notesRouter)
-app.use('/api/login', loginRouter)
-
 app.get('/*', function(req, res) {
   res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
     if (err) {
@@ -37,6 +34,9 @@ app.get('/*', function(req, res) {
   })
 })
 
+app.use('/api/users', usersRouter)
+app.use('/api/polls', notesRouter)
+app.use('/api/login', loginRouter)
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)

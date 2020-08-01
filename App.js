@@ -33,6 +33,7 @@ app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
 
 app.get('/*', function(req, res) {
+  console.log(path.resolve(__dirname, 'build/index.html'))
   res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)

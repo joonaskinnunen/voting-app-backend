@@ -32,8 +32,12 @@ app.use('/api/users', usersRouter)
 app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
 
-app.get('*', function (req, res) {
-  res.sendFile(path.resolve('build/index.html'))
+app.get('/*', function(req, res) {
+  res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
 })
 
 app.use(middleware.unknownEndpoint)

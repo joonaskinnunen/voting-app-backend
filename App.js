@@ -26,13 +26,15 @@ app.use(express.static('build'))
 app.use(express.json())
 app.use(middleware.requestLogger)
 
-app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/app/client/build/index.html'))
-})
+console.log(path.resolve(__dirname + 'build/index.html'))
 
 app.use('/api/users', usersRouter)
 app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
+
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname + 'build/index.html'))
+})
 
 app.use(middleware.unknownEndpoint)
 app.use(middleware.errorHandler)

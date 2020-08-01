@@ -22,7 +22,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
     logger.error('error connection to MongoDB:', error.message)
   })
 
-app.use('/', history())
+app.use(history())
 app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())

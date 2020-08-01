@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
   })
 
 app.use(history({
-  index: 'build//default.html'
+  index: 'build/index.html'
 }))
 app.use(cors())
 app.use(express.static('build'))

@@ -24,6 +24,13 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 app.use(cors())
 app.use(express.static('build'))
 app.use(express.json())
+app.get('/*', function(req, res) {
+  res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 app.use(middleware.requestLogger)
 
 console.log(path.resolve(__dirname + 'build/index.html'))

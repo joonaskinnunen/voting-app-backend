@@ -12,7 +12,7 @@ const path = require('path')
 require('dotenv').config()
 
 app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'path/to/your/index.html'), function(err) {
+  res.sendFile(path.join(__dirname, 'build/index.html'), function(err) {
     if (err) {
       res.status(500).send(err)
     }

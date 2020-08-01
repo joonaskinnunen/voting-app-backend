@@ -33,7 +33,7 @@ app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
 
 app.get('*', function (req, res) {
-  res.sendFile('index.html')
+  res.sendFile(path.resolve('index.html'))
 })
 
 app.use(middleware.unknownEndpoint)

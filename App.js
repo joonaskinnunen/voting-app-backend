@@ -23,6 +23,14 @@ mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTop
 
 app.use(cors())
 app.use(express.static('build'))
+app.get('/*', function(req, res) {
+  console.log(path.resolve(__dirname, 'build/index.html'))
+  res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 app.use(express.json())
 app.use(middleware.requestLogger)
 
@@ -32,17 +40,8 @@ app.use('/api/users', usersRouter)
 app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
 
-app.get('/*', function(req, res) {
-  console.log(path.resolve(__dirname, 'build/index.html'))
-  res.sendFile(path.resolve(__dirname, 'build/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
-
-app.use(middleware.unknownEndpoint)
-app.use(middleware.errorHandler)
+/* app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler) */
 
 
 module.exports = app

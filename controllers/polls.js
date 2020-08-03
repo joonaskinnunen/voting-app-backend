@@ -71,7 +71,6 @@ pollsRouter.delete('/:id', async (req, res, next) => {
     const pollToDelete = await Poll.findById(id)
     const token = getTokenFrom(req)
     const decodedToken = jwt.verify(token, process.env.SECRET)
-    console.log(pollToDelete)
     if (!pollToDelete) {
       return res.status(400).json({ error: 'no poll found with the id ' + id })
     }

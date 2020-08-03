@@ -26,8 +26,6 @@ app.use(express.static('build'))
 app.use(express.json())
 app.use(middleware.requestLogger)
 
-console.log(path.resolve(__dirname + 'build/index.html'))
-
 app.use('/api/users', usersRouter)
 app.use('/api/polls', notesRouter)
 app.use('/api/login', loginRouter)
